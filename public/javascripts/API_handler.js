@@ -16,7 +16,7 @@ var travel_handler = (function(){
 		//var fromLoc = $("#fromloc");
 		//var loLoc - $('#toloc');
 		var fromLoc = 'Bangalore';
-		var loLoc - 'Mumbai';
+		var loLoc = 'Mumbai';
 
 		var locations = GoogleMaps.search(formLoc, toLoc);
 		Yahoo_flickr.showPhotos(locations);

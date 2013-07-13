@@ -25,7 +25,7 @@ var Yahoo_weather = (function(){
 		url = api_end_point +  q + '&api_key=' + _api_key;
 	}
 	return {
-		setAPIKey: setAPIKey;
+		setAPIKey: setAPIKey
 	}
 })();
 

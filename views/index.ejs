@@ -15,17 +15,26 @@
   <link rel="stylesheet" href="stylesheets/app.css" />
   <!-- endbuild -->
 </head>
+<body>
 <header>
   <div class="row logo">
     <span class="logo-text">Y! Travel </span>
   </div>
 </header>
+
 	<div id="start">
 		Description: <%= description %>
 		Author: <%= author %>
 	</div>
 
-<% include scripts.ejs %>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="javascripts/foundation/foundation.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+<script type="text/javascript" src="javascripts/google_maps.js"></script>
+<script type="text/javascript" src="javascripts/foursquare.js"></script>
+<script type="text/javascript" src="javascripts/yahoo_flickr.js"></script>
+<script type="text/javascript" src="javascripts/yahoo_weather.js"></script>
+<script type="text/javascript" src="javascripts/API_handler.js"></script>
 
 </body>
-<html>
+</html>

@@ -2,7 +2,7 @@ var foursquare = (function(){
 	var _oAuthToken = '';
 	var api_end_point = 'https://api.foursquare.com/v2/venues/search?&intent=checkin';
 
-	var _setAPIKey = function(token)
+	var setAPIKey = function(token)
 	{
 		_oAuthToken = token;
 	}
@@ -10,7 +10,7 @@ var foursquare = (function(){
 		var url = api_end_point + '&ll' + lat + ',' + lon + '&oauth_token=' + _oAuthToken;
 	}
 	return {
-		setoAuthToken: setOAuthToken;
+		setAPIKey: setAPIKey
 	}
 })();
 
