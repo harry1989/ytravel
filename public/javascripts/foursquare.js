@@ -13,3 +13,4 @@ var foursquare = (funtion(){
 		setoAuthToken: setOAuthToken;
 	}
 })();
+
