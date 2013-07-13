@@ -16,9 +16,9 @@ var travel_handler = (function(){
 		//var fromLoc = $("#fromloc");
 		//var loLoc - $('#toloc');
 		var fromLoc = 'Bangalore';
-		var loLoc = 'Mumbai';
+		var toLoc = 'Mumbai';
 
-		var locations = GoogleMaps.search(formLoc, toLoc);
+		var locations = GoogleMaps.search(fromLoc, toLoc);
 		Yahoo_flickr.showPhotos(locations);
 		Yahoo_weather.showWeatherDetails(locations);		
 	}

@@ -40,7 +40,8 @@ var GoogleMaps = (function(){
 	}
 
 	return {
-		setAPIKey: setAPIKey
+		setAPIKey: setAPIKey,
+		search: search
 	}
 })();
 
