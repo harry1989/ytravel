@@ -1,5 +1,5 @@
 var Yahoo_weather = (function(){
-	var api_end_point = 'http://query.yahooapis.com/v1/public/yql';
+	var api_end_point = 'http://query.yahooapis.com/v1/public/yql?';
 	var _api_key = '';
 	var yql = 'select * from weather.forecast where woeid in (select woeid From geo.placefinder where text ="LAT,LON" and gflags="R")';
       var options = {
@@ -23,11 +23,10 @@ var Yahoo_weather = (function(){
 	}
 	var _getWeatherForLocation = function(lat, lon)
 	{
-            options.q =  yql.replace('LAT', lat).replace('LON', lon);
-            options.api_key = this._api_key;
-		url = api_end_point;// +  q + '&api_key=' + _api_key;
-            
-            $.get(url,options,function(data,status){
+            var q =  encodeURIComponent(yql.replace('LAT', lat).replace('LON', lon));
+			var url = api_end_point + '&api_key=' + _api_key + '&q=' + q;
+
+            $.get(url,function(data,status){
               console.log(data);
             });
 	}
