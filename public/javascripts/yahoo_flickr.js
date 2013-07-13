@@ -53,6 +53,9 @@ var Yahoo_flickr = (function(){
 	function processPhotos(photos)
 	{
 	    // divs to contain the images
+
+	    $('#photocontainer').show();
+	    
 	    var d = $(_selector);
 	    
 	    // get row width - this is fixed.

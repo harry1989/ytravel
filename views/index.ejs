@@ -26,25 +26,57 @@
 </ul>
 </nav>
 
-<form>
-  <div class="row collapse">
-    <div class="small-9 large-10 columns centered">
-      <input type="text" placeholder="Origin" name="origin" value="Hyderabad"/>
+<div id="search_form" class="row">
+  <form>
+    <div class="row">
+      <div class="small-9 large-10 columns centered">
+        <input type="text" placeholder="Origin" name="origin" value="Hyderabad"/>
+      </div>
     </div>
-  </div>
-  <div class="row collapse">
-    <div class="small-9 large-10 columns centered">
-      <input type="text" placeholder="Destination" name="destination" value="Mumbai"/>
+    <div class="row">
+      <div class="small-9 large-10 columns centered">
+        <input type="text" placeholder="Destination" name="destination" value="Mumbai"/>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <a href="#" class="button" id="plot">Go!</a>
-  </div>
-</form>
-<div id="map" style="width: 70%; height: 400px;margin:0 auto"></div>
+    <div class="row">
+      <a href="#" class="button" id="plot">Go!</a>
+    </div>
+  </form>
+</div>
 
-<div id="picrow" class="row">
-  
+<div class="row" id="mapcontainer" style="display:none">
+  <h3>Places </h3>
+  <hr>
+  <div id="map" style="width: 90%; height: 400px;margin:0 auto"></div>
+</div>
+
+<div class="row" id="photocontainer" style="display:none">
+  <h3>Flicker Photos: </h3>
+  <hr>
+  <div id="picrow"></div>
+</div>
+
+<div class="row" id="weathercontainer" style="display:none">
+  <div id="weatherholder">
+    <h2>Weather details </h2>
+    <hr>
+      <table id="weathertext">
+          <tr>
+              <td colspan="2" id="placetitle"></td>
+          </tr>
+          <tr>
+              <td id="forecastimage">
+                  <img src="" id="weatherimage"/>
+              </td>
+              <td id="statustext">
+                  <span id="temperature"></span><br/>
+                  <span id="condition" class="contents"></span><br/>
+                  <span id="dirspeed" class="contents"></span><br/>
+                  <span id="humidity" class="contents"></span>
+              </td>
+          </tr>
+      </table>
+  </div>
 </div>
 
 <script type="text/javascript" src="javascripts/jquery.js"></script>
@@ -80,7 +112,9 @@
       });
     });  
 
+
       function plotMap(locations,center){
+        $('#mapcontainer').show();
         var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
         center: center,
@@ -99,6 +133,7 @@
 
           google.maps.event.addListener(marker, 'click', function(marker, i) {
             Yahoo_flickr.showPhotos(marker.latLng);
+            Yahoo_weather.showWeatherDetails(marker.latLng);
         });
       }
     }        
