@@ -1,15 +1,13 @@
-node-foundation-boilerplate
+Ytravel
 ========
 
-An opinionated, yet bare-bones starting point for creating an app using node.js/express/mongoose on the backend, and zurb foundation on the frontend
-
-
+A mashup app of Flicker + Foursquare + Google maps + Yahoo weather which will help you explore while travelling between two cities
 
 ## Components
 
 ### Frontend
 
-* Jade Templating Engine
+* EJS
 * Zurb Foundation CSS Framework
 * JQuery
 
@@ -25,8 +23,9 @@ An opinionated, yet bare-bones starting point for creating an app using node.js/
 
 ## Authors
 
-* Matthew Conlen <mc@mathisonian.com>
-* Andrew Sass <andrewpsass@gmail.com>
+* Sriharsha Sistalam <sriharsha.sm@gmail.com>
+* Hitesh Israni <hitesh.israni90@gmail.com>
+* Harshit Srivastava <harshit.shrivastava14@gmail.com>
 
 ## License
 
