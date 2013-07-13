@@ -1,4 +1,4 @@
-var GoogleMaps = function(){
+var GoogleMaps = (function(){
 
 	var origin = new google.maps.LatLng(19.0144100,72.8479400); // mum 
 	var destination = new google.maps.LatLng(17.3752800,78.4744400) // hyd
@@ -42,4 +42,5 @@ var GoogleMaps = function(){
 	return {
 		setAPIKey: setAPIKey
 	}
-}
+})();
+

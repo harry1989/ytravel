@@ -1,4 +1,4 @@
-var foursquare = (funtion(){
+var foursquare = (function(){
 	var _oAuthToken = '';
 	var api_end_point = 'https://api.foursquare.com/v2/venues/search?&intent=checkin';
 
