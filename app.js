@@ -27,7 +27,7 @@ app.configure(function(){
 
 var port = process.env.PORT;
 app.configure('development', function(){
-  port = port || 3000;
+  port = 3000;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
