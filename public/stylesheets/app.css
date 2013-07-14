@@ -25,14 +25,8 @@
 /* -----------------------------------------
    Page Name 2
 ----------------------------------------- */
-
-.logo
+body
 {
-	min-width: 100px;
-	text-indent: center;
-}	
-
-.logo-text
-{
-	margin: 10px 50px;
+	margin: 0 auto;
+	width: 90%;
 }

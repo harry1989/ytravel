@@ -4,8 +4,7 @@
 
 var express = require('express'),
     routes = require('./routes'),
-    tasks = require("./tasks"),
-    mongoose = require('mongoose');
+    tasks = require("./tasks");
 
 
 // Get yo' models
@@ -30,7 +29,6 @@ var port;
 app.configure('development', function(){
   port = 3000;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  mongoose.connect('mongodb://localhost/<app_name>');
 });
 
 app.configure('production', function(){
@@ -39,12 +37,6 @@ app.configure('production', function(){
   // TODO:
   // add production database connection string
   // mongoose.connect('mongodb://localhost/<app_name>');
-});
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('opened');
 });
 
 

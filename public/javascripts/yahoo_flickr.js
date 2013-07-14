@@ -42,7 +42,8 @@ var Yahoo_flickr = (function(){
               
                // processPhotos(data.photos.photo);            
               },
-              complete : function(data){
+              complete : function(data, status){
+              	if(status != "success"){window.setTimeout(spinner.stop(),0);return;}
                 var photos_data = data.responseText.replace("jsonFlickrApi",'').slice(1, - 1);
                 photos_obj = JSON.parse(photos_data);  
                 f();
