@@ -26,9 +26,9 @@ var Yahoo_flickr = (function(){
             $.getJSON(url, options, function(data) {            
                 console.log(data.photos.photo);    
                 processPhotos(data.photos.photo);            
-              }
-            });                      
-	}
+              });
+      }                      
+	
 
 	function processPhotos(photos)
 	{
