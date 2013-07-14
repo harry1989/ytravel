@@ -70,9 +70,13 @@
           var mygc = new google.maps.Geocoder();
           mygc.geocode({'address' : origin}, function(results, status){
           origin_point = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());          
-          });
+          plotMap(locations,origin_point);       
+        });
         }
-        plotMap(locations,origin_point);       
+        else{
+          origin_point = new google.maps.LatLng(19.0144100,72.8479400);
+          plotMap(locations,origin_point);       
+        }
       });
     });  
 
