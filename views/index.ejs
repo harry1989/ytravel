@@ -57,18 +57,29 @@
 <script type="text/javascript" src="javascripts/API_handler.js"></script>
 <script type="text/javascript" src="javascripts/jquery.scrollIntoView.js"></script>
 <script>
+  
     $(document).ready(function(){  
+    
       $('#plot').on('click',function(e){
-        var data = $(this).closest('form').serialize();  
-        var locations =  GoogleMaps.search(data);    
-        plotMap(locations);       
+        var origin_point = new google.maps.LatLng(19.0144100,72.8479400);
+        var data = $(this).closest('form').serialize();          
+        var locations =  GoogleMaps.search(data);   
+        var sArray = $(this).closest('form').serializeArray();
+        if(sArray.length > 0){
+          var origin = sArray[0]['value'];        
+          var mygc = new google.maps.Geocoder();
+          mygc.geocode({'address' : origin}, function(results, status){
+          origin_point = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());          
+          });
+        }
+        plotMap(locations,origin_point);       
       });
     });  
 
-    function plotMap(locations){
+      function plotMap(locations,center){
         var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
-        center: new google.maps.LatLng(19.0144100,72.8479400),
+        center: center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
 
