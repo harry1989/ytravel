@@ -20,11 +20,12 @@ var Yahoo_flickr = (function(){
 		for(i; i <l; i++)
 		{
 			var place = places[i];
-			photo_details.push(getPhotosforLoc(place.lat, place.lon));
+                  console.log(place);
+			photo_details.push(getPhotosforLoc(place.jb, place.kb));
 		}
 
 	}
-	var _getPhotosforLoc = function(lat, lon)
+	var getPhotosforLoc = function(lat, lon)
 	{
 		var url = api_end_point + '&api_key=' + _api_key + '&lat=' + lat + '&lon=' + lon;
 	}
