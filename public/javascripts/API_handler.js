@@ -9,7 +9,7 @@ var travel_handler = (function(){
 	{
 		GoogleMaps.setAPIKey(google_API);
 		Yahoo_flickr.setAPIKey(flicker_API);
-		Yahoo_weather.setAPIKey(yahoo_API);
+		//Yahoo_weather.setAPIKey(yahoo_API);
 	}
 
 	var getDetails = function(){		

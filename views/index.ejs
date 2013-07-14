@@ -41,7 +41,7 @@
     <a href="#" class="button" id="plot">Go!</a>
   </div>
 </form>
-<div id="map" style="width: 80%; height: 400px;margin:0 auto"></div>
+<div id="map" style="width: 70%; height: 400px;margin:0 auto"></div>
 
 <div id="picrow" class="row">
   
@@ -55,14 +55,13 @@
 <script type="text/javascript" src="javascripts/yahoo_flickr.js"></script>
 <script type="text/javascript" src="javascripts/yahoo_weather.js"></script>
 <script type="text/javascript" src="javascripts/API_handler.js"></script>
+<script type="text/javascript" src="javascripts/jquery.scrollIntoView.js"></script>
 <script>
     $(document).ready(function(){  
       $('#plot').on('click',function(e){
         var data = $(this).closest('form').serialize();  
         var locations =  GoogleMaps.search(data);    
-        plotMap(locations);
-        e.preventDefault();
-        return false;
+        plotMap(locations);       
       });
     });  
 
@@ -83,14 +82,11 @@
           map: map
         });
 
-        google.maps.event.addListener(marker, 'click', function(marker, i) {
-            console.log(marker);
+          google.maps.event.addListener(marker, 'click', function(marker, i) {
             Yahoo_flickr.showPhotos(marker.latLng);
         });
       }
-    }
-    
-    
+    }        
 </script>
 </body>
 

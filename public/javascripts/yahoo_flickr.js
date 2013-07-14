@@ -1,9 +1,11 @@
 var Yahoo_flickr = (function(){
+      var photos_obj = null;
 	var api_end_point = 'http://api.flickr.com/services/rest/?method=flickr.photos.search';
 	var _selector = 'div#picrow';
 	var _api_key = '';
 	var options = {
 		has_geo:true,
+            extras : 'url_n',
 		radius:30,
 		page:1,
 		format: 'json',
@@ -16,19 +18,37 @@ var Yahoo_flickr = (function(){
 	{
          getPhotosforLoc(place.jb, place.kb);
 	}
+      
+      var f = function()
+      {
+          lastWidth = $("div#picstest").innerWidth();
+          $("div.picrow").width(lastWidth);
+          processPhotos(photos_obj.photos.photo);
+          $("#picrow").scrollintoview({ duration: "slow", direction: "y"});
+      };
 	var getPhotosforLoc = function(lat, lon)
 	{            
 		var url = api_end_point ;
             options.api_key = _api_key;
             options.lat = lat;
-            options.lon = lon;
-            
-            $.getJSON(url, options, function(data) {            
-                console.log(data.photos.photo);    
-                processPhotos(data.photos.photo);            
-              });
+            options.lon = lon;            
+            $.ajax({
+              url:url,
+              data:options,             
+              async : false,
+              success : function(data) { 
+              
+               // processPhotos(data.photos.photo);            
+              },
+              complete : function(data){
+                var photos_data = data.responseText.replace("jsonFlickrApi",'').slice(1, - 1);
+                photos_obj = JSON.parse(photos_data);  
+                f();
+              }
+            });
       }                      
 	
+      //
 
 	function processPhotos(photos)
 	{
@@ -84,16 +104,19 @@ var Yahoo_flickr = (function(){
 	        while( i < c )
 	        {
 	            var photo = photos[baseLine + i];
+                  
 	            // Calculate new width based on ratio
 	            var wt = Math.floor(ws[baseLine + i] * r);
 	            // add to total width with margins
 	            tw += wt + border * 2;
 	            // Create image, set src, width, height and margin
 	            (function() {
-	                var img = $('<img/>', {class: "photo", src: photo.url_n, width: wt, height: ht}).css("margin", border + "px");
-	                var url = "http://www.flickr.com/photos/" + photo.owner + "/" + photo.id;
-	                img.click(function() { location.href = url; });
-	                d_row.append(img);
+                      if(typeof photo != "undefined"){
+                        var img = $('<img/>', {'class': "photo", src: photo.url_n, width: wt, height: ht}).css("margin", border + "px");	                
+                        var url = "http://www.flickr.com/photos/" + photo.owner + "/" + photo.id;
+                        img.click(function() { location.href = url; });
+                        d_row.append(img);
+                      }
 	            })();
 	            i++;
 	        }
