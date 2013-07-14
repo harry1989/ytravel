@@ -58,24 +58,11 @@
 
 <div class="row" id="weathercontainer" style="display:none">
   <div id="weatherholder">
-    <h2>Weather details </h2>
-    <hr>
-      <table id="weathertext">
-          <tr>
-              <td colspan="2" id="placetitle"></td>
-          </tr>
-          <tr>
-              <td id="forecastimage">
-                  <img src="" id="weatherimage"/>
-              </td>
-              <td id="statustext">
-                  <span id="temperature"></span><br/>
-                  <span id="condition" class="contents"></span><br/>
-                  <span id="dirspeed" class="contents"></span><br/>
-                  <span id="humidity" class="contents"></span>
-              </td>
-          </tr>
-      </table>
+    <h3>Weather details </h3>
+    <hr>      
+    <table id="weathertext">
+
+    </table>
   </div>
 </div>
 
@@ -88,6 +75,25 @@
 <script type="text/javascript" src="javascripts/yahoo_weather.js"></script>
 <script type="text/javascript" src="javascripts/API_handler.js"></script>
 <script type="text/javascript" src="javascripts/jquery.scrollIntoView.js"></script>
+<script type="text/javascript" src="javascripts/handlebar.js"></script>
+
+<script type="text/x-handlebars-template" id="weather_template">
+  <tr>
+      <td colspan="2" id="placetitle">{{placetitle}}</td>
+  </tr>
+  <tr>
+      <td id="forecastimage">
+          <img src="{{weatherimage}}" id="weatherimage"/>
+      </td>
+      <td id="statustext">
+          <span id="temperature">{{temperature}}</span><br/>
+          <span id="condition" class="contents">{{condition}}</span><br/>
+          <span id="dirspeed" class="contents">{{dirspeed}}</span><br/>
+          <span id="humidity" class="contents">{{humidity}}</span>
+      </td>
+  </tr>
+</script>
+
 <script>
   
     $(document).ready(function(){  
@@ -111,6 +117,7 @@
         }
       });
     });  
+
 
 
       function plotMap(locations,center){

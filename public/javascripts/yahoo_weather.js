@@ -28,44 +28,66 @@ var Yahoo_weather = (function(){
 	}
 
 	var _plotWeatherData = function(data){
-        $('#placetitle').html($('#placename').val());
-        $('#weatherimage').attr('src','images/'+data.query.results.channel.item.condition.code+'.png');
-        $('#temperature').html(data.query.results.channel.item.condition.temp+' &deg;F');
-        $('#condition').html(data.query.results.channel.item.condition.text);
-        var winddirection=parseInt(data.query.results.channel.wind.direction);
-        var direction='';
-        switch(true)
-        {
-            case (winddirection==0):
-                direction='N';
-                break;
-            case (winddirection<90):
-                direction='NE';
-                break;
-            case (winddirection==90):
-                direction='E';
-                break;
-            case (winddirection<180):
-                direction='SE';
-                break;
-            case (winddirection==180):
-                direction='S';
-                break;
-            case (winddirection<270):
-                direction='SW';
-                break;
-            case (winddirection==270):
-                direction='W';
-                break;
-            case (winddirection<360):
-                direction='NW';
-                break;
-            case (winddirection==360):
-                direction='N';
-                break;
-        }
-        $('#dirspeed').html('Wind: '+direction+' at '+data.query.results.channel.wind.speed+' mph');
-        $('#humidity').html('Humidity: '+data.query.results.channel.atmosphere.humidity+'%');
+		$('#weathertext').empty();
+
+		try{
+	        var placetitle = $('#placename').val();
+	        var weatherimage = 'images/'+ data.query.results.channel.item.condition.code + '.png';
+	        var temperature  = data.query.results.channel.item.condition.temp +' F';
+	        var condition = data.query.results.channel.item.condition.text;
+	        var winddirection = parseInt(data.query.results.channel.wind.direction);
+	        var direction='';
+	        switch(true)
+	        {
+	            case (winddirection==0):
+	                direction='N';
+	                break;
+	            case (winddirection<90):
+	                direction='NE';
+	                break;
+	            case (winddirection==90):
+	                direction='E';
+	                break;
+	            case (winddirection<180):
+	                direction='SE';
+	                break;
+	            case (winddirection==180):
+	                direction='S';
+	                break;
+	            case (winddirection<270):
+	                direction='SW';
+	                break;
+	            case (winddirection==270):
+	                direction='W';
+	                break;
+	            case (winddirection<360):
+	                direction='NW';
+	                break;
+	            case (winddirection==360):
+	                direction='N';
+	                break;
+	        }
+	        var dirspeed = 'Wind: '+direction+' at '+data.query.results.channel.wind.speed+' mph';
+	        var humidity = 'Humidity: '+data.query.results.channel.atmosphere.humidity+'%';
+
+	        var options = {
+	        	placetitle: placetitle,
+	        	weatherimage: weatherimage,
+	        	dirspeed: dirspeed,
+	        	humidity: humidity,
+	        	temperature: temperature,
+	        	condition: condition
+	        }
+
+	        var source   = $("#weather_template").html();
+	        var template = Handlebars.compile(source);
+	        $('#weathertext').append(template(options));
+	    }
+	    catch(err)
+	    {
+	    	$('#weathertext').append('<span>No weather data available for this place</span>');
+	    	$('#weathercontainer').show();
+	    }
         $('#weathercontainer').show();
 	}
 	return {
