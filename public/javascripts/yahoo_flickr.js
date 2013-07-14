@@ -20,14 +20,19 @@ var Yahoo_flickr = (function(){
 		for(i; i <l; i++)
 		{
 			var place = places[i];
-                  console.log(place);
 			photo_details.push(getPhotosforLoc(place.jb, place.kb));
 		}
 
 	}
 	var getPhotosforLoc = function(lat, lon)
 	{
-		var url = api_end_point + '&api_key=' + _api_key + '&lat=' + lat + '&lon=' + lon;
+		var url = api_end_point ;
+            options.api_key = _api_key;
+            options.lat = lat;
+            options.lon = lon;
+            $.get(url,options,function(data,status){
+              console.log(data);
+            });
 	}
 	return {
 		setAPIKey: setAPIKey,

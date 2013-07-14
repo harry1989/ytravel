@@ -7,7 +7,6 @@
   <title> <%= title %> </title>
   <style type="text/css">
     body {
-      padding: 50px;
       font: 13px Helvetica, Arial, sans-serif;
     }
   </style>
@@ -16,16 +15,32 @@
   <!-- endbuild -->
 </head>
 <body>
-<header>
-  <div class="row logo">
-    <span class="logo-text">Y! Travel </span>
-  </div>
-</header>
+<nav class="top-bar">
+<ul class="title-area">
+  <!-- Title Area -->
+  <li class="name">
+    <h1><a href="#">yTrave!</a></h1>
+  </li>
+  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+</ul>
+</nav>
 
-	<div id="start">
-		Description: <%= description %>
-		Author: <%= author %>
-	</div>
+<form>
+  <div class="row collapse">
+    <div class="small-9 large-10 columns centered">
+      <input type="text" placeholder="Origin" name="origin"/>
+    </div>
+  </div>
+  <div class="row collapse">
+    <div class="small-9 large-10 columns centered">
+      <input type="text" placeholder="Destination" name="desitation"/>
+    </div>
+  </div>
+  <div class="row">
+    <a href="#" class="button">Go!</a>
+  </div>
+</form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="javascripts/foundation/foundation.min.js"></script>
@@ -40,4 +55,5 @@ travel_handler.getDetails();
 
 </script>
 </body>
+
 </html>

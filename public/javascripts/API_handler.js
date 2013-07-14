@@ -6,18 +6,16 @@ var travel_handler = (function(){
 
 	var _authenticate = function()
 	{
-		GoogleMaps.setAPIKey();
-		Yahoo_flickr.setAPIKey();
-		Yahoo_weather.setAPIKey();
+		GoogleMaps.setAPIKey(google_API);
+		Yahoo_flickr.setAPIKey(flicker_API);
+		Yahoo_weather.setAPIKey(yahoo_API);
 	}
 
 	var getDetails = function(){		
 		var fromLoc = new google.maps.LatLng(19.0144100,72.8479400); // mum 
 		var toLoc = new google.maps.LatLng(17.3752800,78.4744400); // hyd
 		var locations = GoogleMaps.search(fromLoc, toLoc);
-            console.log(locations);            
-		//Yahoo_flickr.showPhotos($.map(locations,function(obj,idx){return {'lat':obj['jb'],'lon':obj['kb']}}));
-		Yahoo_flickr.showPhotos(locations);
+		//Yahoo_flickr.showPhotos(locations);
 		Yahoo_weather.showWeatherDetails(locations);		
 	}
 
