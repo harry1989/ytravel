@@ -43,13 +43,11 @@ var GoogleMaps = (function(){
       var search = function(query_string){ 
         console.log(query_string);
         var steps = [];
-        spinner.spin($('#mapcontainer')[0]);        
         $.ajax({
           url: 'http://maps.googleapis.com/maps/api/directions/json?&sensor=false&' + query_string ,
           dataType: 'json',
           async: false,
           success: function(data) {            
-             window.setTimeout(spinner.stop(),900);                                   
              steps = data.routes[0].legs[0].steps;             
           }
         });

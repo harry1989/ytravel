@@ -104,4 +104,3 @@ var spinner_opts = {
   top: 'auto', // Top position relative to parent in px
   left: 'auto' // Left position relative to parent in px
 };
-var spinner = new Spinner(spinner_opts);
