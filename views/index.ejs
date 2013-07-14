@@ -29,20 +29,22 @@
 <form>
   <div class="row collapse">
     <div class="small-9 large-10 columns centered">
-      <input type="text" placeholder="Origin" name="origin"/>
+      <input type="text" placeholder="Origin" name="origin" value="Hyderabad"/>
     </div>
   </div>
   <div class="row collapse">
     <div class="small-9 large-10 columns centered">
-      <input type="text" placeholder="Destination" name="desitation"/>
+      <input type="text" placeholder="Destination" name="destination" value="Mumbai"/>
     </div>
   </div>
   <div class="row">
-    <a href="#" class="button">Go!</a>
+    <a href="#" class="button" id="plot">Go!</a>
   </div>
 </form>
+<div id="map" style="width: 80%; height: 400px;margin:0 auto"></div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="javascripts/jquery.js"></script>
 <script type="text/javascript" src="javascripts/foundation/foundation.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
 <script type="text/javascript" src="javascripts/google_maps.js"></script>
@@ -51,8 +53,41 @@
 <script type="text/javascript" src="javascripts/yahoo_weather.js"></script>
 <script type="text/javascript" src="javascripts/API_handler.js"></script>
 <script>
-travel_handler.getDetails();
+    $(document).ready(function(){  
+      $('#plot').on('click',function(e){
+        var data = $(this).closest('form').serialize();  
+        var locations =  GoogleMaps.search(data);    
+        plotMap(locations);
+        e.preventDefault();
+        return false;
+      });
+    });  
 
+    function plotMap(locations){
+        var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: new google.maps.LatLng(19.0144100,72.8479400),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {  
+        marker = new google.maps.Marker({        
+          position: locations[i],
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', function(marker, i) {
+            console.log(marker);
+            Yahoo_flickr.showPhotos(marker.latLng);
+        });
+      }
+    }
+    
+    
 </script>
 </body>
 

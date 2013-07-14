@@ -11,28 +11,26 @@ var Yahoo_flickr = (function(){
 	var setAPIKey = function(key){
 		_api_key = key;
 	}
-	var showPhotos = function(places)
+	var showPhotos = function(place)
 	{
-		var photo_details = [],
-			i = 0;
-			l = places.length;
-
-		for(i; i <l; i++)
-		{
-			var place = places[i];
-			photo_details.push(getPhotosforLoc(place.jb, place.kb));
-		}
-
+         getPhotosforLoc(place.jb, place.kb);
 	}
 	var getPhotosforLoc = function(lat, lon)
-	{
+	{            
 		var url = api_end_point ;
             options.api_key = _api_key;
             options.lat = lat;
             options.lon = lon;
-            $.get(url,options,function(data,status){
-              console.log(data);
-            });
+            
+            $.ajax({
+              url: url,
+              data : options,
+              dataType: 'json',
+              async: false,
+              success: function(data) {            
+                console.log(data);                
+              }
+            });                      
 	}
 	return {
 		setAPIKey: setAPIKey,
