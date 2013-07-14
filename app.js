@@ -25,14 +25,14 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
-var port;
+var port = process.env.PORT;
 app.configure('development', function(){
-  port = 3000;
+  port = port || 3000;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
-  port = 80;
+  port = port || 80;
   app.use(express.errorHandler());
   // TODO:
   // add production database connection string
