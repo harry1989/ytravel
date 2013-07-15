@@ -10,7 +10,7 @@ var GoogleMaps = (function(){
 	{
 	  var result;
 	  var locality;        
-	  var url = 'http://maps.googleapis.com/maps/api/geocode/json?key=' + MAPIKEY + '&latlng=' + loc.jb.toString() + ',' + loc.kb.toString() + '&sensor=false'
+	  var url = 'http://maps.googleapis.com/maps/api/geocode/json?key=' + MAPIKEY + '&latlng=' + loc.jb.toString() + ',' + loc.kb.toString() + '&sensor=false'        
 	  $.getJSON(url,
 	    function (data) {
 	      console.log(data);
@@ -43,13 +43,14 @@ var GoogleMaps = (function(){
       var search = function(query_string){ 
         console.log(query_string);
         var steps = [];
+        spinner.spin($('#mapcontainer')[0]);        
         $.ajax({
           url: 'http://maps.googleapis.com/maps/api/directions/json?&sensor=false&' + query_string ,
           dataType: 'json',
           async: false,
           success: function(data) {            
-            console.log(data);
-            steps = data.routes[0].legs[0].steps;
+             window.setTimeout(spinner.stop(),900);                                   
+             steps = data.routes[0].legs[0].steps;             
           }
         });
         var allpoints = $.map(steps,function(obj,idx){
@@ -72,6 +73,7 @@ var GoogleMaps = (function(){
                 });
               }
           } 
+          
           return allpoints;
         }
 

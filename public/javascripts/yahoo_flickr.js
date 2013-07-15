@@ -31,7 +31,9 @@ var Yahoo_flickr = (function(){
 		var url = api_end_point ;
             options.api_key = _api_key;
             options.lat = lat;
-            options.lon = lon;            
+            options.lon = lon;    
+            spinner.spin($('#mapcontainer')[0]);        
+
             $.ajax({
               url:url,
               data:options,             
@@ -44,6 +46,7 @@ var Yahoo_flickr = (function(){
                 var photos_data = data.responseText.replace("jsonFlickrApi",'').slice(1, - 1);
                 photos_obj = JSON.parse(photos_data);  
                 f();
+                window.setTimeout(spinner.stop(),900);                        
               }
             });
       }                      

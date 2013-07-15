@@ -80,19 +80,25 @@
 </div>
 
 <script type="text/javascript" src="javascripts/jquery.js"></script>
+<script type="text/javascript" src="javascripts/spin.js"></script>
 <script type="text/javascript" src="javascripts/foundation/foundation.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
-<script type="text/javascript" src="javascripts/google_maps.js"></script>
+
 <script type="text/javascript" src="javascripts/foursquare.js"></script>
 <script type="text/javascript" src="javascripts/yahoo_flickr.js"></script>
 <script type="text/javascript" src="javascripts/yahoo_weather.js"></script>
+<script type="text/javascript" src="javascripts/google_maps.js"></script>
+
 <script type="text/javascript" src="javascripts/API_handler.js"></script>
 <script type="text/javascript" src="javascripts/jquery.scrollIntoView.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+
 <script>
   
     $(document).ready(function(){  
     
       $('#plot').on('click',function(e){
+        spinner.spin(document.body);
         var origin_point = new google.maps.LatLng(19.0144100,72.8479400);
         var data = $(this).closest('form').serialize();          
         var locations =  GoogleMaps.search(data);   
