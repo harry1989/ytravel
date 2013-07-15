@@ -101,8 +101,9 @@
     $(document).ready(function(){  
     
       $('#plot').on('click',function(e){
-        spinner.spin(document.body);
-        var origin_point = new google.maps.LatLng(19.0144100,72.8479400);
+        var origin_point;
+        var target = document.body;
+        var spinner = new Spinner(spinner_opts).spin(target);
         var data = $(this).closest('form').serialize();          
         var locations =  GoogleMaps.search(data);   
         var sArray = $(this).closest('form').serializeArray();
@@ -118,6 +119,7 @@
           origin_point = new google.maps.LatLng(19.0144100,72.8479400);
           plotMap(locations,origin_point);       
         }
+       spinner.stop();
       });
     });  
 
